@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DoneModel } from './models/doneModel';
+import { UnDoneModel } from './models/unDoneModel';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularTodoApp';
+
+  unDoneList:UnDoneModel[]=[];
+  doneList:DoneModel[]=[]
+  unDoneInput:string=''
+
+  addUnDoneItem(){
+    
+    let unDoneItem=new UnDoneModel();
+    unDoneItem.date=Date();
+    unDoneItem.title=this.unDoneInput
+
+    this.unDoneList.push(unDoneItem)
+  }
 }
