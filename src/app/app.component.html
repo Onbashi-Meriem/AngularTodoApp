@@ -1,20 +1,28 @@
 <div class="container mt-5">
   <div class="mb-3 text-start">
     <label for="todoInput" class="label-control">Example label</label>
-    <input type="text" class="form-control" id="todoInput" placeholder="add to do" [(ngModel)]="unDoneInput">
-    <button class="btn btn-primary my-3" style="width:50%;" (click)="addUnDoneItem()">Ekle</button>
+    <!-- <input type="text" class="form-control" id="todoInput" placeholder="add to do" [(ngModel)]="unDoneInput"> -->
+    <input type="text" class="form-control" id="todoInput" placeholder="add to do" #inputRef>
+    <button class="btn btn-primary my-3" style="width:50%;" (click)="addUnDoneItem(inputRef)">Ekle</button>
   </div>
   <div class="row">
     <div class="col-lg-6">
       <h3 class="text-primary">Yapilacaklar Listesi</h3>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let unDone of unDoneList">{{unDone.title}}</li>
+        <li class="list-group-item d-flex" *ngFor="let unDone of unDoneList">
+          <p class="me-auto">{{unDone.title}}</p>
+          <button class="btn btn-success mx-2" (click)="addDoneList(unDone)">Tamamla</button>
+          <button class="btn btn-danger" (click)="deleteTask(unDone)">Sil</button>
+        </li>
       </ul>
     </div>
     <div class="col-lg-6">
       <h3 class="text-success">Tamamlananlar Listesi</h3>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let done of doneList">{{done}}</li>
+        <li class="list-group-item d-flex" *ngFor="let done of doneList">
+          <p class="me-auto">{{done.title}}</p>
+           <button class="btn btn-danger" (click)="returnUnDoneList(done)">Sil</button>
+        </li>
       </ul>
     </div>
   </div>
